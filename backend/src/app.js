@@ -1,6 +1,6 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import routes from './routes';
+import './database';
 
 class App {
   constructor() {
@@ -18,13 +18,5 @@ class App {
     this.server.use(routes);
   }
 }
-
-mongoose.connect(
-  'mongodb+srv://omnistack:omnistack@cluster0-tjv0x.mongodb.net/week10?retryWrites=true&w=majority',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
 
 export default new App().server;
