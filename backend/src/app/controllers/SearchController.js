@@ -1,4 +1,4 @@
-import Dev from '../models/Dev';
+import Dev from '../schemas/Dev';
 import parseStringAsArray from '../utils/parseStringAsArray';
 
 class SearchController {
