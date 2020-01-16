@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import routes from './routes';
 
-
 class App {
   constructor() {
     this.server = express();
@@ -13,7 +12,7 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
-  };
+  }
 
   routes() {
     this.server.use(routes);
@@ -21,7 +20,8 @@ class App {
 }
 
 mongoose.connect(
-  "mongodb+srv://omnistack:omnistack@cluster0-tjv0x.mongodb.net/week10?retryWrites=true&w=majority", {
+  'mongodb+srv://omnistack:omnistack@cluster0-tjv0x.mongodb.net/week10?retryWrites=true&w=majority',
+  {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
