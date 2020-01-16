@@ -2,7 +2,23 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require('./routes');
 
-const app = express();
+
+class App {
+  constructor() {
+    this.server = express();
+
+    this.middlewares();
+    this.routes();
+  }
+
+  middlewares() {
+    this.server.use(express.json());
+  };
+
+  routes() {
+    this.server.use(routes);
+  }
+}
 
 mongoose.connect(
   "mongodb+srv://omnistack:omnistack@cluster0-tjv0x.mongodb.net/week10?retryWrites=true&w=majority", {
@@ -11,7 +27,4 @@ mongoose.connect(
   }
 );
 
-app.use(express.json());
-app.use(routes);
-
-app.listen(3333);
+module.exports = new App().server;
