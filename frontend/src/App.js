@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import api from './services/api';
 
 import "./global.css";
 import "./App.css";
@@ -31,7 +32,7 @@ function App() {
   async function handleAddDev(e) {
     e.preventDefault();
 
-    
+
   }
 
   return (
