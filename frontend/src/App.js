@@ -47,12 +47,26 @@ function App() {
           <div className="input-group">
             <div className="input-block">
               <label htmlFor="latitude">Latitude</label>
-              <input type="number" name="latitude" id="latitude" required value={latitude} />
+              <input 
+                type="number" 
+                name="latitude" 
+                id="latitude" 
+                required 
+                value={latitude} 
+                onChange={e => setLatitude(e.target.value)}
+                />
             </div>
 
             <div className="input-block">
               <label htmlFor="longitude">Longitude</label>
-              <input type="number" name="longitude" id="longitude" required value={longitude}/>
+              <input 
+                type="number" 
+                name="longitude" 
+                id="longitude" 
+                required 
+                value={longitude}
+                onChange={e => setLongitude(e.target.value)}
+              />
             </div>
           </div>
 
