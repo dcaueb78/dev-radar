@@ -6,22 +6,24 @@ import "./Sidebar.css";
 import "./Main.css";
 
 function App() {
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [github_username, setGithub_username] = useState("");
+  const [techs, setTechs] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         const { latitude, longitude } = position.coords;
 
         setLatitude(latitude);
         setLongitude(longitude);
       },
-      (err) => {
+      err => {
         console.log(err);
       },
       {
-        timeout: 30000,
+        timeout: 30000
       }
     );
   }, []);
@@ -37,33 +39,43 @@ function App() {
               name="github_username"
               id="username_github"
               required
+              value={github_username}
+              onChange={e => setGithub_username(e.target.value)}
+              type="text"
             />
           </div>
           <div className="input-block">
             <label htmlFor="techs">Tecnologias</label>
-            <input name="techs" id="techs" required />
+            <input
+              name="techs"
+              id="techs"
+              required
+              value={techs}
+              onChange={e => setTechs(e.target.value)}
+              type="text"
+            />
           </div>
 
           <div className="input-group">
             <div className="input-block">
               <label htmlFor="latitude">Latitude</label>
-              <input 
-                type="number" 
-                name="latitude" 
-                id="latitude" 
-                required 
-                value={latitude} 
+              <input
+                type="number"
+                name="latitude"
+                id="latitude"
+                required
+                value={latitude}
                 onChange={e => setLatitude(e.target.value)}
-                />
+              />
             </div>
 
             <div className="input-block">
               <label htmlFor="longitude">Longitude</label>
-              <input 
-                type="number" 
-                name="longitude" 
-                id="longitude" 
-                required 
+              <input
+                type="number"
+                name="longitude"
+                id="longitude"
+                required
                 value={longitude}
                 onChange={e => setLongitude(e.target.value)}
               />
@@ -76,37 +88,55 @@ function App() {
       <main>
         <ul>
           <li className="dev-item">
-              <header>
-                <img src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4" alt="Cauê Kotarski"/>
-                <div className="user-info">
-                  <strong>Diego Fernandes</strong>
-                  <span>ReactJS, React Native, Node.js</span>
-                </div>
-              </header>
-              <p>Entusiasta/Apaixonado por Javascript, Reactjs, React Native, NodeJS & Family.</p>
-              <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
+            <header>
+              <img
+                src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4"
+                alt="Cauê Kotarski"
+              />
+              <div className="user-info">
+                <strong>Diego Fernandes</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>
+              Entusiasta/Apaixonado por Javascript, Reactjs, React Native,
+              NodeJS & Family.
+            </p>
+            <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
           </li>
           <li className="dev-item">
-              <header>
-                <img src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4" alt="Cauê Kotarski"/>
-                <div className="user-info">
-                  <strong>Diego Fernandes</strong>
-                  <span>ReactJS, React Native, Node.js</span>
-                </div>
-              </header>
-              <p>Entusiasta/Apaixonado por Javascript, Reactjs, React Native, NodeJS & Family.</p>
-              <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
+            <header>
+              <img
+                src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4"
+                alt="Cauê Kotarski"
+              />
+              <div className="user-info">
+                <strong>Diego Fernandes</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>
+              Entusiasta/Apaixonado por Javascript, Reactjs, React Native,
+              NodeJS & Family.
+            </p>
+            <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
           </li>
           <li className="dev-item">
-              <header>
-                <img src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4" alt="Cauê Kotarski"/>
-                <div className="user-info">
-                  <strong>Diego Fernandes</strong>
-                  <span>ReactJS, React Native, Node.js</span>
-                </div>
-              </header>
-              <p>Entusiasta/Apaixonado por Javascript, Reactjs, React Native, NodeJS & Family.</p>
-              <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
+            <header>
+              <img
+                src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4"
+                alt="Cauê Kotarski"
+              />
+              <div className="user-info">
+                <strong>Diego Fernandes</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>
+              Entusiasta/Apaixonado por Javascript, Reactjs, React Native,
+              NodeJS & Family.
+            </p>
+            <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
           </li>
         </ul>
       </main>
