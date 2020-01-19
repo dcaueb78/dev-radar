@@ -25,7 +25,7 @@ function App() {
           </div>
 
           <div className="input-group">
-            <div class="input-block">
+            <div className="input-block">
               <label htmlFor="latitude">Latitude</label>
               <input name="latitude" id="latitude" required />
             </div>
