@@ -7,6 +7,8 @@ import "./Sidebar.css";
 import "./Main.css";
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
   const [github_username, setGithub_username] = useState("");
   const [techs, setTechs] = useState("");
   const [latitude, setLatitude] = useState("");
@@ -29,10 +31,30 @@ function App() {
     );
   }, []);
 
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, []);
+
   async function handleAddDev(e) {
     e.preventDefault();
 
+    const response = await api.post('/devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude
+    });
 
+    setGithub_username('');
+    setTechs('');
+    setLatitude('');
+    setLongitude('');
   }
 
   return (
@@ -94,57 +116,23 @@ function App() {
       </aside>
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img
-                src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4"
-                alt="Cauê Kotarski"
-              />
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>
-              Entusiasta/Apaixonado por Javascript, Reactjs, React Native,
-              NodeJS & Family.
-            </p>
-            <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img
-                src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4"
-                alt="Cauê Kotarski"
-              />
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>
-              Entusiasta/Apaixonado por Javascript, Reactjs, React Native,
-              NodeJS & Family.
-            </p>
-            <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img
-                src="https://avatars0.githubusercontent.com/u/37030530?s=460&v=4"
-                alt="Cauê Kotarski"
-              />
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>
-              Entusiasta/Apaixonado por Javascript, Reactjs, React Native,
-              NodeJS & Family.
-            </p>
-            <a href="https://github.com/dcaueb78">Acessar perfil no Github</a>
-          </li>
+          {devs.map(dev => (
+            <li key={dev._id} className="dev-item">
+              <header>
+                <img
+                  src={dev.avatar_url}
+                  alt={dev.name}
+                />
+                <div className="user-info">
+                  <strong>{dev.name}</strong>
+                  <span>{dev.techs.join(', ')}</span>
+                </div>
+              </header>
+              <p>{dev.bio}</p>
+              <a href={`https://github.com/${dev.github}`}>Acessar perfil no Github</a>
+            </li>
+          ))}
+          
         </ul>
       </main>
     </div>
