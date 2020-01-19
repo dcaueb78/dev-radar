@@ -12,7 +12,7 @@ class DevController {
   async store(req, res) {
     const { github_username, techs, latitude, longitude } = req.body;
 
-    const dev = await Dev.findOne({ github_username });
+    let dev = await Dev.findOne({ github_username });
 
     if (!dev) {
       const response = await axios.get(
@@ -28,7 +28,7 @@ class DevController {
         coordinates: [longitude, latitude]
       };
 
-      const dev = await Dev.create({
+      dev = await Dev.create({
         github_username,
         name,
         avatar_url,

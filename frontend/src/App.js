@@ -53,8 +53,8 @@ function App() {
 
     setGithub_username('');
     setTechs('');
-    setLatitude('');
-    setLongitude('');
+
+    setDevs([...devs, response.data]);
   }
 
   return (
