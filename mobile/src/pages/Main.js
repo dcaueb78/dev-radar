@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import MapView from "react-native-maps";
-import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
+import {
+  requestPermissionsAsync,
+  getCurrentPositionAsync
+} from "expo-location";
 
 export default function Main() {
   const [currentRegion, setCurrentRegion] = useState(null);
@@ -12,7 +15,7 @@ export default function Main() {
 
       if (granted) {
         const { coords } = await getCurrentPositionAsync({
-          enableHighAccuracy: true,
+          enableHighAccuracy: true
         });
 
         const { latitude, longitude } = coords;
@@ -21,15 +24,19 @@ export default function Main() {
           latitude,
           longitude,
           latitudeDelta: 0.04,
-          longitudeDelta: 0.04,
-        })
+          longitudeDelta: 0.04
+        });
       }
     }
 
     loadInitialPosition();
-  }, [])
+  }, []);
 
-  return <MapView style={styles.map} />;
+  if (!currentRegion) {
+    return null;
+  }
+
+  return <MapView initialRegion={currentRegion} style={styles.map} />;
 }
 
 const styles = StyleSheet.create({
