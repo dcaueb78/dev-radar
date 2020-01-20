@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Image } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import { StyleSheet, Image, View, Text } from "react-native";
+import MapView, { Marker, Callout } from "react-native-maps";
 import {
   requestPermissionsAsync,
   getCurrentPositionAsync
@@ -38,13 +38,23 @@ export default function Main() {
 
   return (
     <MapView initialRegion={currentRegion} style={styles.map}>
-      <Marker coordinate={{ latitude: -27.2111164, longitude: -49.6374491 }}>
+      <Marker coordinate={{ latitude: -27.1540111, longitude: -48.5852908 }}>
         <Image
           style={styles.avatar}
           source={{
             uri: "https://avatars0.githubusercontent.com/u/37030530?s=460&v=4"
           }}
         />
+        <Callout>
+          <View style={styles.callout}>
+            <Text style={styles.devName}>Cauê Kotarski</Text>
+            <Text style={styles.devBio}>
+              Entusiasta/Apaixonado por Javascript, Reactjs, React Native,
+              NodeJS & Family.
+            </Text>
+            <Text styles={styles.devTechs}>ReactJS, React Native, Nodejs</Text>
+          </View>
+        </Callout>
       </Marker>
     </MapView>
   );
@@ -60,5 +70,19 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 4,
     borderColor: "#FFF"
+  },
+  callout: {
+    width: 260,
+  },
+  devName: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  devBio: {
+    color: '#666',
+    marginTop: 5,
+  },
+  devTechs: {
+    marginTop: 5,
   }
 });
