@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 
   searchForm: {
     position: 'absolute',
-    bottom: 20,
+    top: 20,
     left: 20,
     right: 20,
     zIndex: 5,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
       width: 4,
       height: 4,
     },
-    elevation: 2
+    elevation: 5
   },
 
   loadButton: {
