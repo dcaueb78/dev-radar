@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import {
   requestPermissionsAsync,
   getCurrentPositionAsync
 } from "expo-location";
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
 
-import api from '../services/api';
+import api from "../services/api";
 
 export default function Main({ navigation }) {
   const [devs, setDevs] = useState([]);
@@ -39,15 +46,19 @@ export default function Main({ navigation }) {
   async function loadDevs() {
     const { latitude, longitude } = currentRegion;
 
-    const response = await api.get('/search', {
+    const response = await api.get("/search", {
       params: {
         latitude,
         longitude,
-        techs: 'ReactJS'
+        techs: "ReactJS"
       }
     });
 
     setDevs(response.data);
+  }
+
+  function handleRegionChanged(region) {
+    setCurrentRegion(region);
   }
 
   if (!currentRegion) {
@@ -56,7 +67,11 @@ export default function Main({ navigation }) {
 
   return (
     <>
-      <MapView initialRegion={currentRegion} style={styles.map}>
+      <MapView
+        onRegionChangeComplete={handleRegionChanged}
+        initialRegion={currentRegion}
+        style={styles.map}
+      >
         <Marker coordinate={{ latitude: -27.1540111, longitude: -48.5852908 }}>
           <Image
             style={styles.avatar}
@@ -83,8 +98,8 @@ export default function Main({ navigation }) {
         </Marker>
       </MapView>
       <View style={styles.searchForm}>
-        <TextInput 
-          style={styles.searchInput} 
+        <TextInput
+          style={styles.searchInput}
           placeholder="Buscar devs por techs..."
           placeholderTextColor="#999"
           autoCapitalize="words"
@@ -130,27 +145,27 @@ const styles = StyleSheet.create({
   },
 
   searchForm: {
-    position: 'absolute',
+    position: "absolute",
     top: 20,
     left: 20,
     right: 20,
     zIndex: 5,
-    flexDirection: 'row',
+    flexDirection: "row"
   },
 
   searchInput: {
     flex: 1,
     height: 50,
-    backgroundColor: '#FFF',
-    color: '#333',
+    backgroundColor: "#FFF",
+    color: "#333",
     borderRadius: 25,
     paddingHorizontal: 20,
     fontSize: 16,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowOffset: {
       width: 4,
-      height: 4,
+      height: 4
     },
     elevation: 5
   },
@@ -158,10 +173,10 @@ const styles = StyleSheet.create({
   loadButton: {
     width: 50,
     height: 50,
-    backgroundColor: '#8E4DFF',
+    backgroundColor: "#8E4DFF",
     borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 15
   }
 });
